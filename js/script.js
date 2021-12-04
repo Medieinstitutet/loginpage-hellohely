@@ -29,7 +29,6 @@ document.getElementById("login").append(loginBtn);
 
 // Eventlistener för inloggning
 loginBtn.addEventListener("click", function () {
-    console.log("Inloggad");
 
     // Sparar användarnamn i LS
     let username = usernameInp.value;
@@ -39,9 +38,22 @@ loginBtn.addEventListener("click", function () {
     let password = passwordInp.value;
     localStorage.setItem("password", password);
 
+    location.reload();
+
     // let userPage = document.createElement("div");
     // userPage.id = "userPage";
     // userPage.innerHTML = "<p> Du är nu inloggad, välkommen!</p>";
     // document.getElementById("login").append(userPage);
     // document.getElementById("loginBtn").innerHTML = "Logga ut";
 });
+
+// Sparar LS-användarnamn och lösenord som variabler
+let username = localStorage.getItem('username');
+let password = localStorage.getItem('password');
+
+// If-loop som körs om username är janne och password är test
+if (username === "janne" & password === "test") {
+    console.log("Hej Janne!");
+} else {
+    console.log("Du är inte Janne...");
+}
