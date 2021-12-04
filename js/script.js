@@ -1,81 +1,82 @@
-// Skapa input för användarnamn
-let usernameInp = document.createElement("input");
-usernameInp.id = "usernameInp";
-usernameInp.placeholder = "Användarnamn";
-document.getElementById("credentials").append(usernameInp);
+// Funktion för att ta emot användarinput och använda den för inloggning
+function loginForm() {
 
-
-// Skapa input för lösenord
-let passwordInp = document.createElement("input");
-passwordInp.id = "passwordInp";
-passwordInp.placeholder = "Lösenord";
-document.getElementById("credentials").append(passwordInp);
-
-
-// Skapa login-button
-let loginBtn = document.createElement("button");
-loginBtn.id = "loginBtn";
-loginBtn.innerHTML = "Logga in";
-document.getElementById("login").append(loginBtn);
-
-// Skapa error-sida för felaktig inloggning
-let errorPage = document.createElement("div");
-errorPage.id = "errorPage";
-errorPage.innerHTML = "<p>Fel användarnamn eller lösenord</p>";
-document.getElementById("container").append(errorPage);
-
-// Funktion för att dölja input-fält
-function hideInputs() {
-    var x = document.getElementById("credentials");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
+  // Skapa input för användarnamn
+  let usernameInp = document.createElement("input");
+  usernameInp.id = "usernameInp";
+  usernameInp.placeholder = "Användarnamn";
+  document.getElementById("login").append(usernameInp);
+  
+  
+  // Skapa input för lösenord
+  let passwordInp = document.createElement("input");
+  passwordInp.id = "passwordInp";
+  passwordInp.placeholder = "Lösenord";
+  document.getElementById("login").append(passwordInp);
+  
+  
+  // Skapa login-button
+  let loginBtn = document.createElement("button");
+  loginBtn.id = "loginBtn";
+  loginBtn.innerHTML = "Logga in";
+  document.getElementById("login").append(loginBtn);
+  
+  // Eventlistener för inloggningsnkappen
+  loginBtn.addEventListener("click", function () {
+  
+      // Sparar användarnamn i LS
+      let username = usernameInp.value;
+      localStorage.setItem("username", username);
+  
+      // Sparar lösenord i LS
+      let password = passwordInp.value;
+      localStorage.setItem("password", password);
+  
+      // Uppdaterar sidan
+      location.reload(); 
+  });
   }
 
-  //Funktion för att dölja error-sidan (vet ej om den kommer behövas)
-  function hideErrorPage() {
-    var x = document.getElementById("errorPage");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-
-  hideErrorPage();
-
-// Eventlistener för inloggningsnkappen
-loginBtn.addEventListener("click", function () {
-
-    // Sparar användarnamn i LS
-    let username = usernameInp.value;
-    localStorage.setItem("username", username);
-
-    // Sparar lösenord i LS
-    let password = passwordInp.value;
-    localStorage.setItem("password", password);
-
-    // Uppdaterar sidan
-    location.reload(); 
-});
+// Kollar om LS username är null. I så fall visas inloggningsformuläret.
+if (localStorage.getItem("username") === null) {
+  console.log("LS är tomt");
+  loginForm();
+}
 
 // Sparar LS-användarnamn och lösenord som variabler
 let username = localStorage.getItem('username');
 let password = localStorage.getItem('password');
 
-// If-loop som körs om username är janne och password är test
+// Kollar om username är janne och password är test, och visar inloggningssida
 if (username === "janne" & password === "test") {
-    console.log("Hej Janne!");
-    hideInputs();
 
-    let userPage = document.createElement("div");
-    userPage.id = "userPage";
-    userPage.innerHTML = "<p> Du är nu inloggad, välkommen!</p>";
-    document.getElementById("container").append(userPage);
-    document.getElementById("loginBtn").innerHTML = "Logga ut";
+  // Skapar användarsida
+  let userPage = document.createElement("div");
+  userPage.id = "userPage";
+  userPage.innerHTML = "<p> Du är nu inloggad, välkommen!</p>";
+  document.getElementById("container").append(userPage);
 
-} else {
-    console.log("Du är inte Janne...");
+  // Skapar utloggningsknapp
+  let logoutBtn = document.createElement("button");
+  logoutBtn.id = "logoutBtn";
+  logoutBtn.innerHTML = "Logga ut";
+  document.getElementById("container").append(logoutBtn);
+
+  // Eventlistener för utloggningsknapp
+  logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("password");
+    localStorage.removeItem("username");
+
+     // Uppdaterar sidan
+     location.reload(); 
+  });
+  
+  // Om användare inte är janne/test och inte null/null
+} else if (username !== null & password !== null){
+  let errorPage = document.createElement("div");
+  errorPage.id = "errorPage";
+  errorPage.innerHTML = "<p>Felaktigt användarnamn eller lösenord. Försök igen!</p>";
+  document.getElementById("container").append(errorPage);
+  loginForm();
 }
+
