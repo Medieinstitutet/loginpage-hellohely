@@ -11,6 +11,7 @@ function loginForm() {
   // Skapa input för lösenord
   let passwordInp = document.createElement("input");
   passwordInp.id = "passwordInp";
+  passwordInp.type = "password";
   passwordInp.placeholder = "Lösenord";
   document.getElementById("login").append(passwordInp);
   
