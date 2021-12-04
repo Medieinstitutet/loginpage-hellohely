@@ -47,13 +47,15 @@ if (localStorage.getItem("username") === null) {
 let username = localStorage.getItem('username');
 let password = localStorage.getItem('password');
 
-// Kollar om username är janne och password är test, och visar inloggningssida
-if (username === "janne", password === "test") {
+// Kollar om användare är janne/test, henrietta/hejsan eller admin/amdmin, och visar inloggningssida
+if ((username === "janne" & password === "test") || 
+(username === "henrietta" & password === "hejsan") ||
+(username === "admin" & password === "admin")) {
 
   // Skapar användarsida
   let userPage = document.createElement("div");
   userPage.id = "userPage";
-  userPage.innerHTML = "<p> Du är nu inloggad, välkommen!</p>";
+  userPage.innerHTML = `<p> Du är nu inloggad, välkommen ${username}!</p>`;
   document.getElementById("container").append(userPage);
 
   // Skapar utloggningsknapp
