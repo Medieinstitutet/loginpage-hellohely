@@ -70,7 +70,7 @@ if (username === "janne" & password === "test") {
      // Uppdaterar sidan
      location.reload(); 
   });
-  
+
   // Om användare inte är janne/test och inte null/null
 } else if (username !== null & password !== null){
   let errorPage = document.createElement("div");
@@ -78,5 +78,11 @@ if (username === "janne" & password === "test") {
   errorPage.innerHTML = "<p>Felaktigt användarnamn eller lösenord. Försök igen!</p>";
   document.getElementById("container").append(errorPage);
   loginForm();
+  
+  // Tömmer LS om man laddar om sidan vid tidigare felaktigt inloggningsförsök
+  window.onload = (event) => {
+    localStorage.removeItem("password");
+    localStorage.removeItem("username");
+  };
 }
 
