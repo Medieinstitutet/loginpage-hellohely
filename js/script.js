@@ -73,6 +73,13 @@ if ((username === "janne" & password === "test") ||
      location.reload(); 
   });
 
+} else if (username === "erik" & password === "e-type") {
+  let userPage = document.createElement("div");
+  userPage.id = "userPage";
+  userPage.innerHTML = `<p> Välkommen ${username}!</p> </br> <img src="cute.gif">`;
+  document.getElementById("container").append(userPage);
+
+
   // Om användare inte är janne/test och inte null/null
 } else if (username !== null, password !== null){
   let errorPage = document.createElement("div");
