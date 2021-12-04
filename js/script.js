@@ -48,7 +48,7 @@ let username = localStorage.getItem('username');
 let password = localStorage.getItem('password');
 
 // Kollar om username är janne och password är test, och visar inloggningssida
-if (username === "janne" & password === "test") {
+if (username === "janne", password === "test") {
 
   // Skapar användarsida
   let userPage = document.createElement("div");
@@ -72,7 +72,7 @@ if (username === "janne" & password === "test") {
   });
 
   // Om användare inte är janne/test och inte null/null
-} else if (username !== null & password !== null){
+} else if (username !== null, password !== null){
   let errorPage = document.createElement("div");
   errorPage.id = "errorPage";
   errorPage.innerHTML = "<p>Felaktigt användarnamn eller lösenord. Försök igen!</p>";
@@ -80,7 +80,7 @@ if (username === "janne" & password === "test") {
   loginForm();
 
   // Tömmer LS om man laddar om sidan vid tidigare felaktigt inloggningsförsök
-  window.onload = (event) => {
+  window.onload = () => {
     localStorage.removeItem("password");
     localStorage.removeItem("username");
   };
