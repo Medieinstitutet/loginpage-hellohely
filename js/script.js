@@ -60,7 +60,7 @@ if (username === "janne" & password === "test") {
   let logoutBtn = document.createElement("button");
   logoutBtn.id = "logoutBtn";
   logoutBtn.innerHTML = "Logga ut";
-  document.getElementById("container").append(logoutBtn);
+  document.getElementById("login").append(logoutBtn);
 
   // Eventlistener för utloggningsknapp
   logoutBtn.addEventListener("click", function () {
@@ -78,7 +78,7 @@ if (username === "janne" & password === "test") {
   errorPage.innerHTML = "<p>Felaktigt användarnamn eller lösenord. Försök igen!</p>";
   document.getElementById("container").append(errorPage);
   loginForm();
-  
+
   // Tömmer LS om man laddar om sidan vid tidigare felaktigt inloggningsförsök
   window.onload = (event) => {
     localStorage.removeItem("password");
