@@ -51,13 +51,26 @@ let password = localStorage.getItem('password');
 // Kollar om användare är janne/test, henrietta/hejsan eller admin/amdmin, och visar inloggningssida
 if ((username === "janne" & password === "test") || 
 (username === "henrietta" & password === "hejsan") ||
-(username === "admin" & password === "admin")) {
+(username === "admin" & password === "admin") ||
+(username === "erik" & password === "e-type")) {
+
+ if (username === "erik" & password === "e-type") {
+  let userPage = document.createElement("div");
+  userPage.id = "userPage";
+  userPage.innerHTML = `<p> Välkommen ${username}!</p> </br> <img src="cute.gif">`;
+  document.getElementById("container").append(userPage);
+}
+
+
+
 
   // Skapar användarsida
   let userPage = document.createElement("div");
   userPage.id = "userPage";
   userPage.innerHTML = `<p> Du är nu inloggad, välkommen ${username}!</p>`;
   document.getElementById("container").append(userPage);
+
+  
 
   // Skapar utloggningsknapp
   let logoutBtn = document.createElement("button");
@@ -73,13 +86,6 @@ if ((username === "janne" & password === "test") ||
      // Uppdaterar sidan
      location.reload(); 
   });
-
-} else if (username === "erik" & password === "e-type") {
-  let userPage = document.createElement("div");
-  userPage.id = "userPage";
-  userPage.innerHTML = `<p> Välkommen ${username}!</p> </br> <img src="cute.gif">`;
-  document.getElementById("container").append(userPage);
-
 
   // Om användare inte är janne/test och inte null/null
 } else if (username !== null, password !== null){
